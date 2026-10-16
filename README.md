@@ -80,17 +80,20 @@ food_delivery_project/
 │   ├── food_delivery_raw.csv                         # combined raw dataset
 │   └── food_delivery_clean.csv                       # cleaned + feature-engineered
 ├── notebooks/
-│   └── 01_data_cleaning_feature_engineering.py       # cleaning + feature engineering script
+│   ├── 01_data_cleaning_feature_engineering.py       # cleaning + feature engineering script
+|   ├── data.py
+|   └── load_to_mysql.py                              # connect directly to sql server
 ├── sql/
 │   ├── 01_schema.sql            # table definitions + reference/dimension tables
 │   ├── 02_load_data.sql         # MySQL LOAD DATA script
 │   ├── 03_analysis_queries.sql  # 12 business-question queries
-│   └── orders_load_ready.csv    # MySQL-ready CSV (column order matches schema)
+│   ├── orders_load_ready.csv    # MySQL-ready CSV (column order matches schema)
+|   └── requirements.txt
 ├── dashboard/
 │   └── POWER_BI_GUIDE.md        # data model, every DAX measure, page-by-page build guide
-├── outputs/
-│   └── eda_summary.png          # 4-panel EDA chart generated from this sample
-├── requirements.txt
+├── images/
+|  ├── Dashboard_1.png
+|  └── Dashboard_2.png
 └── README.md
 ```
 
