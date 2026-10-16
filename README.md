@@ -185,7 +185,7 @@ Four pages: **Executive Overview**, **Delay Deep-Dive**, **Fleet &
 Location**, **Festival/Peak Stress-Test** — all slicer-linked by date,
 city, weather, traffic, and festival.
 
-![EDA Summary](outputs/eda_summary.png)
+![Dashboard Summary](food_delivery_project/Images/Dashboard_1.png)
 
 ---
 
