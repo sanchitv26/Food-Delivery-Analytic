@@ -180,7 +180,7 @@ rows from this sample.
 ## 📈 Power BI Dashboard
 
 Full build guide (data model, every DAX measure, and page-by-page visual
-layout) is in [`dashboard/POWER_BI_GUIDE.md`](dashboard/POWER_BI_GUIDE.md).
+layout) is in [`food_delivery_project/Images/Dashboard_1.png`](food_delivery_project/Images/Dashboard_1.png).
 Four pages: **Executive Overview**, **Delay Deep-Dive**, **Fleet &
 Location**, **Festival/Peak Stress-Test** — all slicer-linked by date,
 city, weather, traffic, and festival.
@@ -244,66 +244,4 @@ repo — see `notebooks/01_data_cleaning_feature_engineering.py` output.*
 
 ---
 
-## ⚠️ Data Limitations & Honesty Notes
 
-- **Sample size:** this repo uses a **300-order real sample**, not the
-  full ~45,600-row dataset, to keep the project lightweight and fully
-  reviewable. The full dataset can be dropped into `data/food_delivery_raw.csv`
-  with the same column names and every script/query in this repo will run
-  unchanged on the full data.
-- **No real cancellation data.** The source dataset only contains
-  **completed deliveries** — it has no cancellation field. Rather than
-  invent one, this project defines a transparent **`high_risk_order`**
-  proxy (extreme delay + adverse weather/traffic) and labels it as a
-  proxy everywhere it appears (SQL comments, dashboard footer). Nothing
-  in this repo claims to be real cancellation data.
-- **Small subgroup caution:** a few breakdowns above (festival orders,
-  Semi-Urban city, 3-simultaneous-deliveries) have fewer than 10 rows in
-  this sample — the direction is likely real, but confidence intervals
-  would be wide; call this out explicitly if asked in an interview.
-- **Some GPS coordinates in the source data are corrupted** (0.0 or
-  sign-flipped) — these are cleaned/flagged, not silently trusted, and
-  the fix is documented in the cleaning script.
-
----
-
-## 📝 Resume Bullets
-
-- Built an end-to-end delivery analytics pipeline (Python, MySQL, Power
-  BI) on real Zomato delivery-operations data, engineering 12+ features
-  (Haversine distance, peak-hour buckets, dataset-relative SLA flag) from
-  raw, inconsistently-formatted timestamps and coordinates.
-- Wrote 12 MySQL queries using CTEs, window functions (RANK, ROW_NUMBER,
-  moving averages), subqueries, and CASE logic to quantify delivery
-  delay drivers, cutting analysis time versus manual spreadsheet review.
-- Identified that traffic congestion (Jam vs. Low) was associated with a
-  44% longer average delivery time and a 10x higher delay rate, and
-  translated the finding into 6 concrete operational recommendations.
-- Designed a 4-page interactive Power BI dashboard (10+ DAX measures,
-  cross-filtered slicers) surfacing delay hotspots by traffic, weather,
-  vehicle type, city, and time-of-day for non-technical stakeholders.
-
-*(Pick 3–4 that best match the job description — tailor the numbers if
-you re-run this on the full 45K-row dataset.)*
-
----
-
-## 🎤 Interview Talking Points
-
-- **"Walk me through your process"** → raw CSV → documented cleaning
-  decisions (median imputation, GPS sign-fix, Excel-fraction time
-  parsing) → feature engineering → SQL for structured business
-  questions → Power BI for stakeholder-facing visuals.
-- **"Why MySQL and Power BI together instead of just Python?"** → SQL is
-  the lingua franca most analytics teams query production data with;
-  Power BI turns those metrics into something a non-technical
-  stakeholder (ops manager) can filter themselves without asking you
-  for a new chart every time.
-- **"What would you do differently with more time/data?"** → pull the
-  full 45K-row dataset, add a proper train/test split for a delivery-time
-  prediction model, and replace the `high_risk_order` proxy with real
-  cancellation data if a platform ever shares it.
-- **"How did you handle messy data?"** → be ready to describe the Excel
-  day-fraction time bug and the 0.0-coordinate issue specifically — these
-  are the kind of concrete, defensible details that show you actually
-  did the work rather than reciting a template.
